@@ -1,0 +1,56 @@
+name: Build and Deploy VOID BLOCKS
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build game
+      run: npm run build
+      
+    - name: Deploy to Portfolio Repository
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        personal_token: ${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}
+        external_repository: jeffreyjose07/jeffreyjose07.github.io
+        publish_dir: ./dist
+        destination_dir: public/games/void-blocks
+        commit_message: 'Update VOID BLOCKS game build'
+        user_name: 'GitHub Actions'
+        user_email: 'actions@github.com'
+        
+    - name: Trigger Portfolio Rebuild
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}
+        repository: jeffreyjose07/jeffreyjose07.github.io
+        event-type: game-updated
+        client-payload: '{"game": "void-blocks", "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+    - name: Create deployment artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: void-blocks-build
+        path: dist/
+        retention-days: 30
