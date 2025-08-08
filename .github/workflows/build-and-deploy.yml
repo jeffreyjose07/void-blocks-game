@@ -35,6 +35,8 @@ jobs:
         external_repository: jeffreyjose07/jeffreyjose07.github.io
         publish_dir: ./dist
         destination_dir: public/games/void-blocks
+        publish_branch: main
+        keep_files: true
         commit_message: 'Update VOID BLOCKS game build'
         user_name: 'GitHub Actions'
         user_email: 'actions@github.com'
