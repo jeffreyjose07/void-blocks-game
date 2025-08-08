@@ -1,3 +1,19 @@
+// Wait for LittleJS to load before initializing game components
+function waitForLittleJS() {
+    return new Promise((resolve) => {
+        if (typeof engineInit !== 'undefined') {
+            resolve();
+        } else {
+            const checkInterval = setInterval(() => {
+                if (typeof engineInit !== 'undefined') {
+                    clearInterval(checkInterval);
+                    resolve();
+                }
+            }, 50);
+        }
+    });
+}
+
 import './game/Grid.js'
 import './game/Piece.js' 
 import './game/GameLogic.js'
@@ -124,4 +140,7 @@ function spawnNewPiece() {
     }
 }
 
-engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost)
+// Initialize game after LittleJS loads
+waitForLittleJS().then(() => {
+    engineInit(gameInit, gameUpdate, gameUpdatePost, gameRender, gameRenderPost)
+})
