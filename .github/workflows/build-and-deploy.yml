@@ -29,17 +29,25 @@ jobs:
       
     - name: Deploy to Portfolio Repository
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        personal_token: ${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}
-        external_repository: jeffreyjose07/jeffreyjose07.github.io
-        publish_dir: ./dist
-        destination_dir: public/games/void-blocks
-        publish_branch: main
-        keep_files: true
-        commit_message: 'Update VOID BLOCKS game build'
-        user_name: 'GitHub Actions'
-        user_email: 'actions@github.com'
+      run: |
+        # Clone the portfolio repository
+        git clone https://jeffreyjose07:${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}@github.com/jeffreyjose07/jeffreyjose07.github.io.git portfolio-repo
+        
+        # Create the games directory if it doesn't exist
+        mkdir -p portfolio-repo/public/games/void-blocks
+        
+        # Copy the built game files
+        cp -r dist/* portfolio-repo/public/games/void-blocks/
+        
+        # Configure git
+        cd portfolio-repo
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        
+        # Commit and push the changes
+        git add public/games/void-blocks/
+        git commit -m "Update VOID BLOCKS game build from void-blocks-game@${{ github.sha }}" || echo "No changes to commit"
+        git push origin main
         
     - name: Trigger Portfolio Rebuild
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
