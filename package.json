@@ -1,20 +1,17 @@
 {
   "name": "void-blocks-game",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A cyberpunk-inspired Tetris variant where you manipulate data fragments to prevent system corruption",
-  "main": "src/main.js",
-  "type": "module",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "serve": "vite preview"
+    "dev": "python3 -m http.server 3000",
+    "build": "mkdir -p dist && cp index.html dist/ && echo 'Build completed - single file game ready for deployment'",
+    "preview": "python3 -m http.server 4173 --directory dist",
+    "serve": "python3 -m http.server 3000"
   },
-  "keywords": ["game", "tetris", "cyberpunk", "littlejs", "javascript"],
+  "keywords": ["game", "tetris", "cyberpunk", "vanilla-js", "single-file"],
   "author": "Jeffrey Jose",
   "license": "MIT",
-  "devDependencies": {
-    "vite": "^5.0.0"
-  },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {}
 }

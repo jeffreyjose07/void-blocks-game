@@ -36,30 +36,39 @@ A cyberpunk-inspired Tetris variant where you manipulate data fragments to preve
 
 ## 🛠️ Technical Implementation
 
-- **Engine**: LittleJS 1.8.0 (loaded from CDN)
-- **Build Tool**: Vite for development and production builds
-- **Rendering**: LittleJS WebGL renderer with Canvas fallback
-- **Performance**: Consistent 60fps with optimized draw calls
-- **Architecture**: Modular ES6 classes (Grid, Piece, GameLogic, UI)
-- **Bundle Size**: Minimal footprint with CDN dependencies
+- **Architecture**: Single-file HTML with embedded CSS and vanilla JavaScript
+- **Rendering**: HTML5 Canvas with 2D context for optimal compatibility
+- **Performance**: Consistent 60fps with requestAnimationFrame optimization
+- **Dependencies**: Zero external dependencies - completely self-contained
+- **Bundle Size**: Single HTML file under 50KB
+- **Browser Support**: All modern browsers supporting HTML5 Canvas
 
 ## 🚀 Getting Started
 
 ### Development
 ```bash
-npm install
 npm run dev
+# Opens local server at http://localhost:3000
 ```
 
 ### Build for Production
 ```bash
 npm run build
+# Copies index.html to dist/ directory
 ```
 
 ### Preview Production Build
 ```bash
 npm run preview
+# Preview built version at http://localhost:4173
 ```
+
+### Single File Usage
+The game is entirely self-contained in `index.html` and can be:
+- Opened directly in any browser
+- Served from any web server
+- Embedded in other websites
+- Deployed to any static hosting service
 
 ## 🎨 Visual Design
 
