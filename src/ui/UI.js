@@ -148,12 +148,12 @@ class UI {
             const glowColor = new Color(color.r, color.g, color.b, color.a * (i / glowSteps) * 0.3)
             const offset = vec2(i, i)
             
-            // LittleJS text rendering
-            drawText(text, renderPos.add(offset), size, glowColor, 0, undefined, 'center')
+            // LittleJS text rendering with correct parameters
+            drawText(text, renderPos.add(offset), size, glowColor)
         }
         
         // Main text
-        drawText(text, renderPos, size, color, 0, undefined, 'center')
+        drawText(text, renderPos, size, color)
     }
     
     formatNumber(num) {

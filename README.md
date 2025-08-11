@@ -5,43 +5,43 @@ A cyberpunk-inspired Tetris variant where you manipulate data fragments to preve
 ## 🎮 Game Features
 
 - **Classic Tetris Gameplay** with cyberpunk twist
-- **Virus Blocks** that spread and corrupt the system
-- **Data Fragments** with special power-ups and abilities
-- **Firewall Challenges** - intense speed rounds every 10 levels
-- **System Corruption** mechanics with visual glitch effects
-- **Terminal Aesthetic** with neon glow effects and scanlines
-- **Progressive Difficulty** with increasing corruption levels
-- **High Score System** with local storage
+- **Virus Blocks** that spread and corrupt adjacent blocks over time
+- **Multiple Block Types** with unique visual effects and behaviors
+- **Firewall Challenges** - 3x speed rounds triggered every 10 levels
+- **System Corruption** mechanics with dynamic visual feedback
+- **Terminal Aesthetic** with neon glow effects and monospace typography
+- **Progressive Difficulty** with exponential speed increase
+- **High Score System** with localStorage persistence
 
 ## 🎯 Unique Mechanics
 
 ### Block Types
-- **Standard Blocks** (Green) - Basic building blocks
-- **Data Fragments** (Cyan) - Slow time when cleared, pulse effect
-- **Special Blocks** (Magenta) - Bonus points and effects
-- **Virus Blocks** (Red) - Spread to adjacent blocks, glitch effects
-- **Power-ups** (Yellow) - Clear all virus blocks, sparkle effect
+- **Standard Blocks** (Green) - Basic building blocks with terminal glow
+- **Data Fragments** (Cyan) - Pulsing cyan blocks that slow time when cleared
+- **Special Blocks** (Magenta) - Bonus points and enhanced effects
+- **Virus Blocks** (Red) - Spread to adjacent blocks with glitch animations
+- **Power-ups** (Yellow) - Sparkle effect, clears all virus blocks when activated
 
-### Game Modes
-- **Standard Mode** - Progressive difficulty increase
-- **Firewall Challenge** - Every 10 levels, 3x speed for 10 seconds
-- **System Corruption** - Visual effects increase with virus spread
+### Game Systems
+- **Virus Spreading** - 30% chance every 3 seconds to infect adjacent blocks
+- **Firewall Challenge** - Triggered at level multiples of 10, lasts 10 seconds
+- **System Corruption** - Tracked numerically, affects visual glitch intensity
+- **Time Manipulation** - Data fragments slow game speed by 50% for 3 seconds
 
 ## 🕹️ Controls
 
 - **Arrow Keys** or **WASD** - Move pieces
 - **Up Arrow** or **Space** - Rotate pieces
-- **Down Arrow** or **S** - Soft drop
-- **ESC** - Pause (planned feature)
+- **Down Arrow** or **S** - Soft drop (accelerated fall)
 
-## 🛠️ Technical Details
+## 🛠️ Technical Implementation
 
-- **Engine**: LittleJS (7KB lightweight game engine)
-- **Build Tool**: Vite
-- **Rendering**: WebGL with Canvas fallback
-- **Performance**: 60fps, optimized for mobile and desktop
-- **Bundle Size**: <50KB total
-- **Browser Support**: Modern browsers with Canvas/WebGL
+- **Engine**: LittleJS 1.8.0 (loaded from CDN)
+- **Build Tool**: Vite for development and production builds
+- **Rendering**: LittleJS WebGL renderer with Canvas fallback
+- **Performance**: Consistent 60fps with optimized draw calls
+- **Architecture**: Modular ES6 classes (Grid, Piece, GameLogic, UI)
+- **Bundle Size**: Minimal footprint with CDN dependencies
 
 ## 🚀 Getting Started
 
